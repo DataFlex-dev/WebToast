@@ -1,4 +1,15 @@
 {
     "description": "Toast style notifications for WebApps.",
-    "df": 26.0
+    "df": 26.0,
+    "package": { 
+        "icon": "toast.png", // Optional
+        "df-min": 25.0, // Required for package.
+        "df-max": 99.0,
+        "version": "0.1.0", // Required for package, expected to be semver compatible.
+        "htmlIncludes": [ // Optional
+            "Custom/WebToast.js",
+            "Custom/WebToast.css"
+        ]
+
+    }
 }

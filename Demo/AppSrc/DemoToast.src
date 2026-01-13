@@ -175,8 +175,8 @@ Object oMain is a cFlexTronPanel
             Forward Send OnDefineScriptIncludes (&aScriptHtml)
             
             Move """
-                <script src="Custom/DfToast.js"></script>
-                <link href="Custom/DfToast.css" rel="stylesheet" type="text/css" />
+                <script src="Custom/WebToast.js"></script>
+                <link href="Custom/WebToast.css" rel="stylesheet" type="text/css" />
                 """ to aScriptHtml[-1]
         End_Procedure
     End_Object
