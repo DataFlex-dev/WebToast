@@ -1,21 +1,27 @@
-# Library Template
+# WebToast Library
 
----
+Add toasts to your web application. Toasts are floating notification boxes that usually hide after a few seconds. This library provides an API to display them easilly from DataFlex within your Web Framework Applications.
 
-## Library Information
+## Usage Example
 
-This repository is a template for developing DataFlex Libraries. The `Library` directory should contain the library, and the `Demo` directory should be a demo workspace that uses the library. (Optional) the `help` directory can be used for documentation and release notes.
+```
+Use cWebToast.pkg
 
-###### External Components
+Object oToaster is a cWebToast
+    Set pePosition to wtpTopRight
+    Set piWidth to 350
+End_Object
 
-If applicable, list the external components used in the table below:
+Send ShowInfoToast of oToaster "A background task has been started and will continue running while you work."
 
-| Component | Version |
-| --------- | ------- |
-|           |         |
+Send ShowInfoToast of oToaster "New version available."
+
+Send ShowWarningToast of oToaster "Your session will expire soon due to inactivity. Please save your work to avoid losing any changes."
+```
+![Screenshot](Help/BasicScreenshot.png)
 
 ## General Information
 
 | Product  | Version           |
 | -------- | ----------------- |
-| DataFlex | 23.0, 24.0, 25.0  |
+| DataFlex | 26.0  |

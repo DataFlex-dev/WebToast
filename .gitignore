@@ -8,7 +8,7 @@
 **/IdeSrc/*
 **/LoginEncryptionKey.inc
 Demo/Programs/**.dll
-Demo/AppHtml/CssThemes
-Demo/AppHtml/DfEngine
-Demo/AppHtml/web.config
-Demo/AppHtml/global.asa
+**/AppHtml/CssThemes/Df_*
+**/AppHtml/DfEngine
+**/AppHtml/web.config
+**/AppHtml/global.asa

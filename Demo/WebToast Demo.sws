@@ -1,0 +1,10 @@
+{
+    "dependencies": [
+        "../Library/WebToast.sws"
+    ],
+    "df": 26.0,
+    "projects": [
+        "DemoToast.src",
+        "WebApp.src"
+    ]
+}

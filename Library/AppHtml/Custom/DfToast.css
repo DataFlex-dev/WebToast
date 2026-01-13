@@ -1,0 +1,150 @@
+:root {
+    --df-ToastBackgroundColor: var(--df-Grayscale2);
+    --df-ToastTextColor: #fff;
+    --df-ToastCloseButtonColor: #fff;
+    --df-ToastBorderColor: transparent;
+    --df-ToastBorderRadius: 3px;
+    --df-ToastBorderStyle: solid;
+    --df-ToastBorderWidth: 1px;
+
+    --df-ToastWarningBackgroundColor: var(--df-WarningRegular);
+    --df-ToastWarningTextColor: var(--df-Grayscale8);
+    --df-ToastErrorBackgroundColor: var(--df-ErrorRegular);
+    --df-ToastErrorTextColor: var(--df-Grayscale8);
+    --df-ToastSuccessBackgroundColor: #28a745;
+    --df-ToastSuccessTextColor: #fff;
+}
+
+.WebToastContainer {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    background-color: transparent;
+}
+
+.WebToastContainer.WebToastCon_top_center {
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.WebToastContainer.WebToastCon_top_right {
+    top: 0px;
+    right: 0px;
+    left: auto;
+}
+
+.WebToastContainer.WebToastCon_top_left {
+    top: 0px;
+    left: 0px;
+}
+
+.WebToastContainer.WebToastCon_bottom_center {
+    bottom: 0px;
+    left: 50%;
+    top: auto;
+    transform: translateX(-50%);
+}
+
+.WebToastContainer.WebToastCon_bottom_right {
+    bottom: 0px;
+    right: 0px;
+    top: auto;
+    left: auto;
+}
+
+.WebToastContainer.WebToastCon_bottom_left {
+    bottom: 0px;
+    left: 0px;
+    top: auto;
+}
+
+.WebToast {
+    min-width: 200px;
+    margin: 10px;
+    padding: 10px 15px;
+
+    border: var(--df-ToastBorderWidth) var(--df-ToastBorderStyle) var(--df-ToastBorderColor);
+    border-radius: var(--df-ToastBorderRadius);
+
+    background-color: var(--df-ToastBackgroundColor);
+    color: var(--df-ToastTextColor);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    pointer-events: auto;
+    opacity: 0.9;
+    transition: opacity 0.3s ease-in-out;
+    position: relative;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+}
+
+.WebToast.WebToast_with_closebtn {
+    padding-right: 35px;
+}
+
+.WebToast .WebToast_closebtn {
+    position: absolute;
+    top: 4px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.WebToast .WebToast_closebtn:hover {
+    font-weight: bold;
+}
+
+.WebToast .WebToast_closebtn:before {
+    content: "×";
+}
+
+.WebToast.WebToast_icon {
+    padding-left: 45px;
+}
+
+.WebToast.WebToast_icon::before {
+    content: "🛈";
+    font-size: 25px;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.WebToast.WebToast_warning {
+    background-color: var(--df-ToastWarningBackgroundColor);
+    color: var(--df-ToastWarningTextColor);
+}
+
+.WebToast.WebToast_error.WebToast_icon::before {
+    content: "✖";
+}
+
+.WebToast.WebToast_warning.WebToast_icon::before {
+    content: "⚠";
+}
+
+.WebToast.WebToast_success.WebToast_icon::before {
+    content: "✔";
+}
+
+.WebToast.WebToast_error {
+    background-color: var(--df-ToastErrorBackgroundColor);
+    color: var(--df-ToastErrorTextColor);
+}
+
+.WebToast.WebToast_success {
+    background-color: var(--df-ToastSuccessBackgroundColor);
+    color: var(--df-ToastSuccessTextColor);
+}
+
+.WebToast:hover {
+    opacity: 1;
+}
+
+.WebToast.WebToast_hidden {
+    opacity: 0;
+
+}

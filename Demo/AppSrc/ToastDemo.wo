@@ -1,0 +1,581 @@
+﻿Use cWebView.pkg
+Use cWebPanel.pkg
+Use cWebForm.pkg 
+Use cWebButton.pkg
+Use cWebToast.pkg
+Use cWebGroup.pkg
+Use cWebCheckBox.pkg
+Use cWebCombo.pkg
+Use cWebEdit.pkg
+
+Include_Text ToastDemoText.json as C_DemoData
+
+Object oToastDemo is a cWebView
+    Set piWidth to 700
+    Set psCaption to "Demo Toast"
+    
+    Object oWebToast is a cWebToast
+    End_Object
+    
+
+    // Your DDO structure will go here
+
+    Object oWebMainPanel is a cWebPanel
+        Set piColumnCount to 12
+        Set piRowCount to 3
+        
+        Object oDarkLightGroup is a cWebGroup
+            Set piColumnSpan to 7
+            Set piColumnIndex to 5
+            Set psCaption to "Dark / Light mode"
+            Set piRowIndex to 0
+            Set piColumnCount to 3
+            Set psColumnWidths to "0/195"
+            
+            Object oSystemPreferenceCheckbox is a cWebCheckbox
+                Set piColumnSpan to 0
+                Set psCaption to "System preference"
+                Set pbServerOnChange to True
+
+                Procedure OnChange String sNewValue String sOldValue
+                    WebSet peThemePreference of (Host(Self)) to tpSystemPreference
+                    Send UpdateActiveMode
+                End_Procedure                
+            End_Object
+
+            Object oDarkCheckbox is a cWebCheckbox
+                Set piColumnSpan to 0
+                Set psCaption to "Dark"
+                Set pbServerOnChange to True
+
+                Procedure OnChange String sNewValue String sOldValue
+                    WebSet peThemePreference of (Host(Self)) to tpDarkMode
+                    Send UpdateActiveMode
+                End_Procedure   
+            End_Object
+
+            Object oLightCheckbox is a cWebCheckbox
+                Set piColumnSpan to 0
+                Set psCaption to "Light"
+                Set pbServerOnChange to True
+
+                Procedure OnChange String sNewValue String sOldValue
+                    WebSet peThemePreference of (Host(Self)) to tpLightMode
+                    Send UpdateActiveMode
+                End_Procedure   
+            End_Object
+            
+            Procedure UpdateActiveMode
+                Integer eThemePreference
+                
+                WebGet peThemePreference of (Host(Self)) to eThemePreference
+                
+                Send SetChecked of oSystemPreferenceCheckbox  (eThemePreference = tpSystemPreference)
+                Send SetChecked of oDarkCheckbox              (eThemePreference = tpDarkMode)
+                Send SetChecked of oLightCheckbox             (eThemePreference = tpLightMode)
+            End_Procedure
+            
+            Procedure OnLoad
+                Send UpdateActiveMode
+            End_Procedure
+        End_Object
+
+
+        Object oSimpleToastGrp is a cWebGroup
+            Set psCaption to "Simple Toast"
+            Set piColumnCount to 4
+            Set piRowCount to 4
+            Set piColumnIndex to 0
+            Set piRowIndex to 1
+            Set piColumnSpan to 13
+            Set psColumnWidths to "0/155 1/155 2/155"
+
+            Object oInfoBtn is a cWebButton
+                Set psCaption to "Info Toast"
+                Set piColumnIndex to 0
+                Set piRowIndex to 0
+            
+                Procedure OnClick
+                    String sText
+                    Get DemoInfo to sText
+                    Send ShowInfoToast of oWebToast sText
+                End_Procedure
+            End_Object
+
+            Object oShowCloseCB is a cWebCheckbox
+                Set psCaption to "Show close"
+                Set piColumnIndex to 1
+                Set pbServerOnChange to True
+                Set piRowIndex to 0
+
+                Procedure OnChange String sNewValue String sOldValue
+                    Boolean bChecked
+                    
+                    Get GetChecked to bChecked
+                    
+                    WebSet pbShowCloseButton of oWebToast to bChecked
+                End_Procedure
+                
+                Procedure OnLoad
+                    Boolean bChecked
+                    
+                    WebGet pbShowCloseButton of oWebToast to bChecked
+                    Send SetChecked bChecked
+                    
+                    Forward Send OnLoad
+                End_Procedure
+            End_Object
+
+            Object oDurationFrm is a cWebForm
+                Set psLabel to "Duration(ms)"
+                Set piColumnIndex to 2
+                Set pbServerOnChange to True
+                Set peDataType to typeNumber
+                Set piPrecision to 0
+                Set piRowIndex to 0
+                Set piLabelOffset to 100
+                Set piColumnSpan to 2
+
+                Procedure OnLoad
+                    Integer iVal
+                    
+                    WebGet piDurationMs of oWebToast to iVal
+                    WebSet psValue to iVal
+                    
+                    Forward Send OnLoad
+                End_Procedure
+
+                Procedure OnChange String sNewValue String sOldValue
+                    WebSet piDurationMs of oWebToast to sNewValue
+                End_Procedure
+            End_Object
+
+            Object oWarningBtn is a cWebButton
+                Set psCaption to "Warning Toast"
+                Set piColumnIndex to 0
+                Set piRowIndex to 1
+            
+                Procedure OnClick
+                    String sText
+                    Get DemoWarning to sText
+                    Send ShowWarningToast of oWebToast sText
+                End_Procedure
+            End_Object
+
+            Object oShowIconCB is a cWebCheckbox
+                Set psCaption to "Show icon"
+                Set piColumnIndex to 1
+                Set pbServerOnChange to True
+                Set piRowIndex to 1
+
+                Procedure OnChange String sNewValue String sOldValue
+                    Boolean bChecked
+                    
+                    Get GetChecked to bChecked
+                    
+                    WebSet pbShowIcon of oWebToast to bChecked
+                End_Procedure
+                
+                Procedure OnLoad
+                    Boolean bChecked
+                    
+                    WebGet pbShowIcon of oWebToast to bChecked
+                    Send SetChecked bChecked
+                    
+                    Forward Send OnLoad
+                End_Procedure
+            End_Object
+
+            Object oWidthFrm is a cWebForm
+                Set psLabel to "Width (px)"
+                Set piColumnIndex to 2
+                Set pbServerOnChange to True
+                Set peDataType to typeNumber
+                Set piPrecision to 0
+                Set piRowIndex to 1
+                Set piLabelOffset to 100
+                Set piColumnSpan to 2
+
+                Procedure OnLoad
+                    Integer iVal
+                    
+                    WebGet piWidth of oWebToast to iVal
+                    WebSet psValue to iVal
+                    
+                    Forward Send OnLoad
+                End_Procedure
+
+                Procedure OnChange String sNewValue String sOldValue
+                    WebSet piWidth of oWebToast to sNewValue
+                End_Procedure
+            End_Object
+
+            Object oSuccessBtn is a cWebButton
+                Set psCaption to "Success Toast"
+                Set piColumnIndex to 0
+                Set piRowIndex to 2
+                
+                Procedure OnClick
+                    String sText
+                    Get DemoSuccess to sText
+                    Send ShowSuccessToast of oWebToast sText
+                End_Procedure
+            End_Object
+
+            Object oNewestOnTopCB is a cWebCheckbox
+                Set psCaption to "Newest on top"
+                Set piColumnIndex to 1
+                Set pbServerOnChange to True
+                Set piRowIndex to 2
+
+                Procedure OnChange String sNewValue String sOldValue
+                    Boolean bChecked
+                    
+                    Get GetChecked to bChecked
+                    
+                    WebSet pbNewestOnTop of oWebToast to bChecked
+                End_Procedure
+                
+                Procedure OnLoad
+                    Boolean bChecked
+                    
+                    WebGet pbNewestOnTop of oWebToast to bChecked
+                    Send SetChecked bChecked
+                    
+                    Forward Send OnLoad
+                End_Procedure
+            End_Object
+
+            Object oPositionCmb is a cWebCombo
+                Set psLabel to "Position"
+                Set piColumnIndex to 2
+                Set pbServerOnChange to True
+                Set piRowIndex to 2
+                Set piLabelOffset to 100
+                Set piColumnSpan to 2
+
+                Procedure OnFill
+                    Send AddComboItem wtpTopRight       "wtpTopRight    "
+                    Send AddComboItem wtpBottomRight    "wtpBottomRight "
+                    Send AddComboItem wtpBottomLeft     "wtpBottomLeft  "
+                    Send AddComboItem wptTopLeft        "wptTopLeft     "
+                    Send AddComboItem wptTopCenter      "wptTopCenter   "
+                    Send AddComboItem wptBottomCenter   "wptBottomCenter"
+                End_Procedure
+
+                Procedure OnChange String sNewValue String sOldValue
+                    WebSet pePosition of oWebToast to sNewValue
+                End_Procedure
+
+                Procedure OnLoad
+                    Integer ePosition
+                    
+                    WebGet pePosition of oWebToast to ePosition
+                    WebSet psValue to ePosition
+                    
+                    Forward Send OnLoad
+                End_Procedure
+            End_Object
+
+            Object oErrorBtn is a cWebButton
+                Set psCaption to "Error Toast"
+                Set piColumnIndex to 0
+                Set piRowIndex to 3
+                
+               
+            
+                Procedure OnClick
+                    String sText
+                    Get DemoError to sText
+                    Send ShowErrorToast of oWebToast sText 
+                End_Procedure
+            End_Object
+
+            Object oHideAllBtn is a cWebButton
+                Set piColumnSpan to 0
+                Set psCaption to "Hide all"
+                Set piRowIndex to 3
+                Set piColumnIndex to 1
+            
+                Procedure OnClick
+                    Send HideAllToast of oWebToast
+                End_Procedure
+            End_Object
+
+            Object oHideLastBtn is a cWebButton
+                Set piColumnSpan to 0
+                Set psCaption to "Hide last"
+                Set piRowIndex to 3
+                Set piColumnIndex to 2
+            
+                Procedure OnClick
+                    Send HideLastToast of oWebToast
+                End_Procedure
+            End_Object
+        End_Object
+    
+    
+        Object oCustomToastGrp is a cWebGroup
+            Set psCaption to "Custom Toast"
+            Set piColumnCount to 4
+            Set piRowCount to 6
+            Set piColumnIndex to 0
+            Set piRowIndex to 2
+            Set piColumnSpan to 13
+            Set psColumnWidths to "0/155 1/155 2/155"
+            Set psRowHeights to ""
+
+            Object oMessageEdit is a cWebEdit
+                Set piColumnSpan to 2
+                Set psLabel to "Message"
+                Set piRowIndex to 0
+                Set piColumnIndex to 0
+                Set piRowSpan to 5
+                Set pbFillHeight to True
+                Set peLabelPosition to lpTop
+                
+                Set psValue to """
+                    This toast is created using custom settings.
+                    """
+            End_Object
+
+            Object oSendBtn is a cWebButton
+                Set piColumnSpan to 2
+                Set psCaption to "Show"
+                Set piRowIndex to 5
+                Set piColumnIndex to 0
+            
+                Procedure OnClick
+                    tWebToast toast
+                    
+                    WebGet psValue of oMessageEdit to toast.sMessage
+                    WebGet psValue of oCustom_IdFrm to toast.sId
+                    WebGet psValue of oCustom_DurationFrm to toast.iDurationMs
+                    WebGet psValue of oCustom_WidthFrm to toast.iWidth
+                    WebGet psValue of oCustom_PositionCmb to toast.ePosition
+                    
+                    Get GetChecked of oCustom_NewestOnTopCB to toast.bNewestOnTop
+                    Get GetChecked of oCustom_ShowCloseCB to toast.bCloseButton
+                    Get GetChecked of oCustom_ShowIconCB to toast.bShowIcon
+                    
+                    Send ShowCustomToast of oWebToast toast
+                End_Procedure
+                
+            End_Object
+
+            Object oCustom_IdFrm is a cWebForm
+                Set piColumnSpan to 2
+                Set psLabel to "ID"
+                Set piRowIndex to 0
+                Set piColumnIndex to 2
+                Set piLabelOffset to 100
+            End_Object
+
+            Object oCustom_DurationFrm is a cWebForm
+                Set psLabel to "Duration(ms)"
+                Set piColumnIndex to 2
+                Set pbServerOnChange to True
+                Set peDataType to typeNumber
+                Set piPrecision to 0
+                Set piRowIndex to 1
+                Set piLabelOffset to 100
+                Set piColumnSpan to 2
+
+                Procedure OnLoad
+                    Integer iVal
+                    
+                    WebGet piDurationMs of oWebToast to iVal
+                    WebSet psValue to iVal
+                    
+                    Forward Send OnLoad
+                End_Procedure
+            End_Object
+
+            Object oCustom_WidthFrm is a cWebForm
+                Set psLabel to "Width (px)"
+                Set piColumnIndex to 2
+                Set pbServerOnChange to True
+                Set peDataType to typeNumber
+                Set piPrecision to 0
+                Set piRowIndex to 2
+                Set piLabelOffset to 100
+                Set piColumnSpan to 2
+
+                Procedure OnLoad
+                    Integer iVal
+                    
+                    WebGet piWidth of oWebToast to iVal
+                    WebSet psValue to iVal
+                    
+                    Forward Send OnLoad
+                End_Procedure
+            End_Object
+
+            Object oCustom_PositionCmb is a cWebCombo
+                Set psLabel to "Position"
+                Set piColumnIndex to 2
+                Set pbServerOnChange to True
+                Set piRowIndex to 3
+                Set piLabelOffset to 100
+                Set piColumnSpan to 2
+
+                Procedure OnFill
+                    Send AddComboItem wtpTopRight       "wtpTopRight    "
+                    Send AddComboItem wtpBottomRight    "wtpBottomRight "
+                    Send AddComboItem wtpBottomLeft     "wtpBottomLeft  "
+                    Send AddComboItem wptTopLeft        "wptTopLeft     "
+                    Send AddComboItem wptTopCenter      "wptTopCenter   "
+                    Send AddComboItem wptBottomCenter   "wptBottomCenter"
+                End_Procedure
+
+                Procedure OnLoad
+                    Integer ePosition
+                    
+                    WebGet pePosition of oWebToast to ePosition
+                    WebSet psValue to ePosition
+                    
+                    Forward Send OnLoad
+                End_Procedure
+            End_Object
+
+            Object oCustom_ShowCloseCB is a cWebCheckbox
+                Set psCaption to "Show close"
+                Set piColumnIndex to 2
+                Set piRowIndex to 4
+
+                Procedure OnLoad
+                    Boolean bChecked
+                    
+                    WebGet pbShowCloseButton of oWebToast to bChecked
+                    Send SetChecked bChecked
+                    
+                    Forward Send OnLoad
+                End_Procedure
+            End_Object
+
+            Object oCustom_NewestOnTopCB is a cWebCheckbox
+                Set psCaption to "Newest on top"
+                Set piColumnIndex to 2
+                Set pbServerOnChange to True
+                Set piRowIndex to 5
+
+                Procedure OnLoad
+                    Boolean bChecked
+                    
+                    WebGet pbNewestOnTop of oWebToast to bChecked
+                    Send SetChecked bChecked
+                    
+                    Forward Send OnLoad
+                End_Procedure
+            End_Object
+
+            Object oCustom_ShowIconCB is a cWebCheckbox
+                Set psCaption to "Show icon"
+                Set piColumnIndex to 3
+                Set piRowIndex to 4
+                
+                Procedure OnLoad
+                    Boolean bChecked
+                    
+                    WebGet pbShowIcon of oWebToast to bChecked
+                    Send SetChecked bChecked
+                    
+                    Forward Send OnLoad
+                End_Procedure
+            End_Object
+        End_Object
+        
+    End_Object 
+    
+    
+    
+    { WebProperty=Server }
+    Property Integer piInfoCount 0
+    Function DemoInfo Returns String
+        Integer iItem
+        String sText
+        
+        WebGet piInfoCount to iItem
+        Increment iItem
+        WebSet piInfoCount to iItem
+        
+        Get DemoText "info" iItem to sText
+
+        Function_Return sText
+    End_Function
+    
+    { WebProperty=Server }
+    Property Integer piWarningCount 0
+    Function DemoWarning Returns String
+        Integer iItem
+        String sText
+        
+        WebGet piWarningCount to iItem
+        Increment iItem
+        WebSet piWarningCount to iItem
+        
+        Get DemoText "warning" iItem to sText
+
+        Function_Return sText
+    End_Function
+    
+    { WebProperty=Server }
+    Property Integer piSuccessCount 0
+    Function DemoSuccess Returns String
+        Integer iItem
+        String sText
+        
+        WebGet piSuccessCount to iItem
+        Increment iItem
+        WebSet piSuccessCount to iItem
+        
+        Get DemoText "success" iItem to sText
+
+        Function_Return sText
+    End_Function
+    
+        { WebProperty=Server }
+    Property Integer piErrorCount 0
+
+    Set peLayoutType to ltGrid
+    Function DemoError Returns String
+        Integer iItem
+        String sText
+        
+        WebGet piErrorCount to iItem
+        Increment iItem
+        WebSet piErrorCount to iItem
+        
+        Get DemoText "error" iItem to sText
+
+        Function_Return sText
+    End_Function
+    
+    Function DemoText String sName Integer iItem Returns String 
+        Handle hoJson hoArray
+        Boolean bSuccess
+        Integer iCount
+        String sVal
+        
+        Get Create (RefClass(cJsonObject)) to hoJson
+        Get ParseString of hoJson C_DemoData to bSuccess
+        If (bSuccess) Begin
+            Get Member of hoJson sName to hoArray
+            Get MemberCount of hoArray to iCount
+            If (iItem >= iCount) Begin
+                Move (Mod(iItem, iCount)) to iItem
+            End
+            
+            
+            Get MemberValue of hoArray iItem to sVal
+            Send Destroy of hoArray
+        End
+        Else Begin
+            Move "Undefined" to sVal
+        End
+        Send Destroy of hoJson
+        
+        Function_Return sVal
+    End_Function
+
+End_Object
