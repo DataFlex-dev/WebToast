@@ -1,0 +1,58 @@
+{
+    "success": [
+        "Changes saved successfully.",
+        "Your preferences have been updated and will take effect the next time you open the application.",
+        "You successfully clicked the button!",
+        "The export completed successfully and the file is now available in your downloads folder.",
+        "Settings have been applied without any issues.",
+        "All items were processed successfully without any errors.",
+        "Your account information has been verified and updated.",
+        "The operation completed successfully and no further action is required.",
+        "Data was imported successfully and is now ready to use.",
+        "The task finished earlier than expected and everything looks good.",
+        "Operation completed successfully.\nAll changes have been saved.\nNo further action is required.",
+        "Upload finished.\nFiles have been validated and stored safely."
+    ],
+    "info": [
+        "New version available.",
+        "You are currently viewing the application in demo mode, so some actions may not be persisted between sessions.",
+        "Synchronization is in progress. This may take a few moments depending on your network connection.",
+        "Connection established.",
+        "A background task has been started and will continue running while you work.",
+        "Your changes are being processed and will appear shortly.",
+        "This feature is currently in preview and may change in future releases.",
+        "You have reached the maximum number of active notifications.",
+        "Some data is being loaded in the background to improve performance.",
+        "The application is up to date and running normally.",
+        "Processing request…\nPlease wait while we fetch the latest data.",
+        "Demo mode active.\nSome features are limited.\nNo data will be persisted."
+    ],
+    "warning": [
+        "Unsaved changes detected.",
+        "Your session will expire soon due to inactivity. Please save your work to avoid losing any changes.",
+        "Storage space is running low. Consider cleaning up unused files or increasing your storage quota.",
+        "This action may take a while and could temporarily affect application performance.",
+        "Some features are disabled in demo mode and may not behave exactly as in production.",
+        "You are approaching the maximum allowed limit for this operation.",
+        "Not all items could be validated. Please review the highlighted fields.",
+        "This action cannot be undone. Please proceed with caution.",
+        "Your network connection appears to be unstable.",
+        "Performance may be degraded while this process is running.",
+        "Warning:\nUnsaved changes detected.\nLeaving this page will discard them.",
+        "Limited connectivity detected.\nSome features may not work as expected."
+    ],
+    "error": [
+        "Failed to save changes.",
+        "The network connection was lost while attempting to complete the request. Please check your connection and try again.",
+        "Something went wrong while processing your request. If the problem persists, contact support with the error details.",
+        "Permission denied. You do not have sufficient rights to perform this action.",
+        "An unexpected error occurred and the operation could not be completed.",
+        "The requested resource could not be found.",
+        "The operation timed out before it could be completed.",
+        "Invalid input detected. Please correct the errors and try again.",
+        "The server returned an unexpected response.",
+        "This action failed due to an internal application error.",
+        "Error while saving data.\nThe server did not respond in time.\nPlease try again later.",
+        "Authentication failed.\nYour session may have expired.\nPlease sign in again."
+    ]
+}

@@ -1,0 +1,135 @@
+﻿Use cWebObject.pkg
+
+Enum_List
+    Define wtpTopRight
+    Define wtpBottomRight
+    Define wtpBottomLeft
+    Define wptTopLeft
+    Define wptTopCenter
+    Define wptBottomCenter
+End_Enum_List
+
+Struct tWebToast
+    Integer iDurationMs
+    Integer ePosition
+    Integer iWidth
+    Boolean bCloseButton
+    String sCssClass
+    Boolean bAllowHtml
+    Boolean bNewestOnTop
+    Boolean bShowIcon
+    
+    String sId
+    String sMessage
+End_Struct
+
+
+Class cWebToast is a cWebObject
+    Procedure Construct_Object
+        Forward Send Construct_Object
+        
+        { WebProperty=Client }
+        Property Integer piDurationMs 5000
+        { WebProperty=Client }
+        { EnumList="wtpTopRight, wtpBottomRight, wtpBottomLeft, wptTopLeft, wptTopCenter, wptBottomCenter" }
+        Property Integer pePosition wptTopCenter
+        { WebProperty=Client }
+        Property Integer piWidth 0
+        { WebProperty=Client }
+        Property Boolean pbShowCloseButton False
+        { WebProperty=Client }
+        Property String psCssClass ""
+        { WebProperty=Client }
+        Property Boolean pbNewestOnTop False
+        { WebProperty=Client }
+        Property Boolean pbAllowHtml False
+        { WebProperty=Client }
+        Property Boolean pbShowIcon True
+        
+        { WebProperty=Client }
+        Property Boolean pbServerOnToastHide False
+        { WebProperty=Client }
+        Property String psClientOnToastHide ""
+        { WebProperty=Client }
+        Property Boolean pbServberOnToastClick False
+        { WebProperty=Client }
+        Property String psClientOnToastClick
+        
+        Set psJSClass to "df.WebToast"
+    End_Procedure
+    
+    Function DefaultToastConfig Returns tWebToast
+        
+    End_Function
+    
+    Procedure ShowSuccessToast String sMessage
+        String[] aArgs
+        
+        Move "WebToast_success" to aArgs[0]
+        Move sMessage to aArgs[1]
+        
+        Send ClientAction "showToast" aArgs
+    End_Procedure
+    
+    Procedure ShowInfoToast String sMessage
+        String[] aArgs
+        
+        Move "WebToast_info" to aArgs[0]
+        Move sMessage to aArgs[1]
+        
+        Send ClientAction "showToast" aArgs
+    End_Procedure
+    
+    Procedure ShowWarningToast String sMessage
+        String[] aArgs
+        
+        Move "WebToast_warning" to aArgs[0]
+        Move sMessage to aArgs[1]
+        
+        Send ClientAction "showToast" aArgs
+    End_Procedure
+    
+    Procedure ShowErrorToast String sMessage
+        String[] aArgs
+        
+        Move "WebToast_error" to aArgs[0]
+        Move sMessage to aArgs[1]
+        
+        Send ClientAction "showToast" aArgs
+    End_Procedure
+    
+    Procedure HideLastToast
+        Send ClientAction "hideLastToast"
+    End_Procedure
+    
+    Procedure HideAllToast
+        Send ClientAction "hideAllToast"
+    End_Procedure
+    
+    Procedure HideToastById String sId
+        String[] aArgs
+        
+        Move sId to aArgs[0]
+        
+        Send ClientAction "hideToastById" aArgs
+    End_Procedure
+    
+    Procedure ShowCustomToast tWebToast toastConfig
+        String[] aArgs
+        
+        Send ClientAction "showCustomToast" aArgs toastConfig
+    End_Procedure
+    
+    Procedure OnToastHide String sId
+    End_Procedure
+    
+    Procedure OnToastClick String sId
+    End_Procedure
+    
+    Procedure End_Construct_Object
+        Forward Send End_Construct_Object
+        
+        WebPublishProcedure OnToastClick
+        WebPublishProcedure OnToastHide
+    End_Procedure
+End_Class
