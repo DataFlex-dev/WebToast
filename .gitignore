@@ -12,3 +12,4 @@ Demo/Programs/**.dll
 **/AppHtml/DfEngine
 **/AppHtml/web.config
 **/AppHtml/global.asa
+**/DfPkg

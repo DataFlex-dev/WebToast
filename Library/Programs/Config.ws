@@ -9,4 +9,4 @@ IdeSrcPath=IdeSrc
 HelpPath=Help
 ProgramPath=Programs
 FileList=Data/Filelist.cfg
-Description=Toast style notifications for WebApps.
+Description=Web control for toast style notifications.
