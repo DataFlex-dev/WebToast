@@ -1,0 +1,10 @@
+{
+    "dependencies": [
+        "DataFlex-dev/Toast#0.1.2"
+    ],
+    "df": 26.0,
+    "projects": [
+        "DemoToast.src",
+        "WebApp.src"
+    ]
+}

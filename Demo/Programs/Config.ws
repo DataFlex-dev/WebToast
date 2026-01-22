@@ -9,4 +9,4 @@ IdeSrcPath=IdeSrc
 HelpPath=Help
 ProgramPath=Programs
 FileList=Data/Filelist.cfg
-Description=WebToast Demo
+Description=Toast Demo
