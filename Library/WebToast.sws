@@ -1,4 +1,7 @@
 {
+    "dependencies": [
+        "DataFlex-dev/Web UI#>=1.0.0"
+    ],
     "description": "Web control for toast style notifications.",
     "df": 26.0,
     "package": {
@@ -9,7 +12,11 @@
             "Custom/WebToast.css"
         ],
         "icon": "Toast.png",
-        "version": "0.1.2"
+        "includeFiles": [
+            "CHANGELOG.md"
+        ],
+        "version": "0.1.4",
+        "license": "MIT"
     },
     "workspaceName": "Toast"
 }
