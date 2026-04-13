@@ -58,8 +58,22 @@ Class cWebToast is a cWebObject
         Set psJSClass to "df.WebToast"
     End_Procedure
     
+    /*
+    Returns the default toast configuration based on the current property values.
+    */
     Function DefaultToastConfig Returns tWebToast
+        tWebToast config
         
+        WebGet piDurationMs     to config.iDurationMs
+        WebGet pePosition       to config.ePosition
+        WebGet piWidth          to config.iWidth
+        WebGet pbShowCloseButton to config.bCloseButton
+        WebGet psCssClass       to config.sCssClass
+        WebGet pbAllowHtml      to config.bAllowHtml
+        WebGet pbNewestOnTop    to config.bNewestOnTop
+        WebGet pbShowIcon       to config.bShowIcon
+        
+        Function_Return config
     End_Function
     
     /*
@@ -88,7 +102,6 @@ Class cWebToast is a cWebObject
     using the "WebToast_success" CSS class.
     
     @param  sMessage  The message to display in the toast.
-    @client-action
     */
     Procedure ShowSuccessToast String sMessage
         Send ShowToast sMessage "WebToast_success"
@@ -124,14 +137,30 @@ Class cWebToast is a cWebObject
         Send ShowToast sMessage "WebToast_error"
     End_Procedure
     
+    /*
+    Hides the most recently shown toast.
+    
+    @client-action
+    */
     Procedure HideLastToast
         Send ClientAction "hideLastToast"
     End_Procedure
     
+    /*
+    Hides all currently visible toasts.
+    
+    @client-action
+    */
     Procedure HideAllToast
         Send ClientAction "hideAllToast"
     End_Procedure
     
+    /*
+    Hides the toast with the specified ID.
+    
+    @param  sId  The ID of the toast to hide.
+    @client-action
+    */
     Procedure HideToastById String sId
         String[] aArgs
         
@@ -140,15 +169,36 @@ Class cWebToast is a cWebObject
         Send ClientAction "hideToastById" aArgs
     End_Procedure
     
+    /*
+    Shows a toast notification using a fully configured tWebToast struct,
+    allowing full control over all toast settings for a single toast.
+    
+    @param  toastConfig  The toast configuration struct.
+    @client-action
+    */
     Procedure ShowCustomToast tWebToast toastConfig
         String[] aArgs
         
         Send ClientAction "showCustomToast" aArgs toastConfig
     End_Procedure
     
+    /*
+    Called when a toast is hidden. Override to handle the event server-side.
+    Requires pbServerOnToastHide to be set to True.
+    
+    @param  sId  The ID of the toast that was hidden.
+    @published
+    */
     Procedure OnToastHide String sId
     End_Procedure
     
+    /*
+    Called when a toast is clicked. Override to handle the event server-side.
+    Requires pbServerOnToastClick to be set to True.
+    
+    @param  sId  The ID of the toast that was clicked.
+    @published
+    */
     Procedure OnToastClick String sId
     End_Procedure
     
