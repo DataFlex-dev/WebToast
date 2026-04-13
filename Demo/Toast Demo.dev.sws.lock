@@ -1,0 +1,15 @@
+{
+    "dependencies": {
+        "DataFlex-dev/Web UI": {
+            "ref": "1.0.41"
+        },
+        "DataFlex-dev/Web UI FlexTron": {
+            "ref": "1.0.41"
+        },
+        "DataFlex-dev/Web UI Material Theme": {
+            "ref": "1.0.2"
+        },
+        "local/WebToast": {}
+    },
+    "lockVersion": "1.0.0"
+}
