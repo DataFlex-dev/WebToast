@@ -97,6 +97,15 @@ Class cWebToast is a cWebObject
         
         Send ClientAction "showToast" aArgs
     End_Procedure
+
+    Procedure ShowToast String sMessage String sType        
+        String[] aArgs
+        
+        Move sType  to aArgs[0]
+        Move sMessage to aArgs[1]
+        
+        Send ClientAction "showToast" aArgs
+    End_Procedure
     
     Procedure HideLastToast
         Send ClientAction "hideLastToast"
