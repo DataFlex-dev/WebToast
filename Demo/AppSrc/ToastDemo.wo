@@ -15,6 +15,10 @@ Object oToastDemo is a cWebView
     Set psCaption to "Demo Toast"
     
     Object oWebToast is a cWebToast
+        Set pbServerOnToastClick to True
+        Procedure OnToastClick String sId
+            Send ShowInfoToast ("You clicked toast with id: " + sId)
+        End_Procedure
     End_Object
     
 

@@ -1,8 +1,16 @@
 {
     "dependencies": [
-        "DataFlex-dev/Toast#0.1.2"
+        "DataFlex-dev/Toast#0.1.2",
+        "DataFlex-dev/Web UI FlexTron#1.0.41",
+        "DataFlex-dev/Web UI Material Theme#1.0.2"
     ],
     "df": 26.0,
+    "paths": {
+        "indexHtml": [
+            "AppHtml/index.html",
+            "AppSrc/FlexTronScriptIncludes.html"
+        ]
+    },
     "projects": [
         "DemoToast.src",
         "WebApp.src"

@@ -11,12 +11,12 @@
             "Custom/WebToast.js",
             "Custom/WebToast.css"
         ],
-        "icon": "Toast.png",
+        "icon": "toast.png",
         "includeFiles": [
             "CHANGELOG.md"
         ],
-        "version": "0.1.4",
-        "license": "MIT"
+        "license": "BSD-3-Clause",
+        "version": "0.1.5"
     },
     "workspaceName": "Toast"
 }

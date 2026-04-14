@@ -51,7 +51,7 @@ Class cWebToast is a cWebObject
         { WebProperty=Client }
         Property String psClientOnToastHide ""
         { WebProperty=Client }
-        Property Boolean pbServberOnToastClick False
+        Property Boolean pbServerOnToastClick False
         { WebProperty=Client }
         Property String psClientOnToastClick
         

@@ -1,8 +1,11 @@
 {
     "dependencies": [
+        "DataFlex-dev/Web UI FlexTron#1.0.41",
+        "DataFlex-dev/Web UI Material Theme#1.0.2",
         "../Library/WebToast.sws"
     ],
     "df": 26.0,
+    "no-update-html": true,
     "projects": [
         "DemoToast.src",
         "WebApp.src"

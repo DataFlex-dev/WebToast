@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.5] - 2026-04-15
+
+- Fixed pbServerOnToastClick property name (#5).
+- Migrated demo to use Web UI Packages.
+
 ## [0.1.4] - 2026-03-05
 
 - Added DataFlex-dev/Web UI#>=1.0.0 dependency.
