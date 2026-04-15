@@ -13,3 +13,4 @@ Demo/Programs/**.dll
 **/AppHtml/web.config
 **/AppHtml/global.asa
 **/DfPkg
+Demo/AppHtml/WebUI

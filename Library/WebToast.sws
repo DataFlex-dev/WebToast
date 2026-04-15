@@ -16,7 +16,7 @@
             "CHANGELOG.md"
         ],
         "license": "BSD-3-Clause",
-        "version": "0.1.5"
+        "version": "0.1.6"
     },
     "workspaceName": "Toast"
 }
