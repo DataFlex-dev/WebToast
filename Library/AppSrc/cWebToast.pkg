@@ -58,54 +58,109 @@ Class cWebToast is a cWebObject
         Set psJSClass to "df.WebToast"
     End_Procedure
     
+    /*
+    Returns the default toast configuration based on the current property values.
+    */
     Function DefaultToastConfig Returns tWebToast
+        tWebToast config
         
+        WebGet piDurationMs     to config.iDurationMs
+        WebGet pePosition       to config.ePosition
+        WebGet piWidth          to config.iWidth
+        WebGet pbShowCloseButton to config.bCloseButton
+        WebGet psCssClass       to config.sCssClass
+        WebGet pbAllowHtml      to config.bAllowHtml
+        WebGet pbNewestOnTop    to config.bNewestOnTop
+        WebGet pbShowIcon       to config.bShowIcon
+        
+        Function_Return config
     End_Function
     
+    /*
+    Shows a toast notification with the specified message and CSS type class.
+    
+    @param  sMessage  The message to display in the toast.
+    @param  sOptType  (optional) The CSS class that determines the toast type/style
+                      (e.g. "WebToast_info", "WebToast_success"). Pass an empty 
+                      string or omit for an unstyled toast.
+    @client-action
+    */
+    Procedure ShowToast String sMessage String sOptType
+        String[] aArgs
+        
+        If (num_arguments >= 2) ;
+            Move sOptType to aArgs[0]
+        Else ;
+            Move "" to aArgs[0]
+        Move sMessage to aArgs[1]
+        
+        Send ClientAction "showToast" aArgs
+    End_Procedure
+    
+    /*
+    Shows a success toast notification. Convenience wrapper for ShowToast
+    using the "WebToast_success" CSS class.
+    
+    @param  sMessage  The message to display in the toast.
+    */
     Procedure ShowSuccessToast String sMessage
-        String[] aArgs
-        
-        Move "WebToast_success" to aArgs[0]
-        Move sMessage to aArgs[1]
-        
-        Send ClientAction "showToast" aArgs
+        Send ShowToast sMessage "WebToast_success"
     End_Procedure
     
+    /*
+    Shows an info toast notification. Convenience wrapper for ShowToast
+    using the "WebToast_info" CSS class.
+    
+    @param  sMessage  The message to display in the toast.
+    */
     Procedure ShowInfoToast String sMessage
-        String[] aArgs
-        
-        Move "WebToast_info" to aArgs[0]
-        Move sMessage to aArgs[1]
-        
-        Send ClientAction "showToast" aArgs
+        Send ShowToast sMessage "WebToast_info"
     End_Procedure
     
+    /*
+    Shows a warning toast notification. Convenience wrapper for ShowToast
+    using the "WebToast_warning" CSS class.
+    
+    @param  sMessage  The message to display in the toast.
+    */
     Procedure ShowWarningToast String sMessage
-        String[] aArgs
-        
-        Move "WebToast_warning" to aArgs[0]
-        Move sMessage to aArgs[1]
-        
-        Send ClientAction "showToast" aArgs
+        Send ShowToast sMessage "WebToast_warning"
     End_Procedure
     
+    /*
+    Shows an error toast notification. Convenience wrapper for ShowToast
+    using the "WebToast_error" CSS class.
+    
+    @param  sMessage  The message to display in the toast.
+    */
     Procedure ShowErrorToast String sMessage
-        String[] aArgs
-        
-        Move "WebToast_error" to aArgs[0]
-        Move sMessage to aArgs[1]
-        
-        Send ClientAction "showToast" aArgs
+        Send ShowToast sMessage "WebToast_error"
     End_Procedure
     
+    /*
+    Hides the most recently shown toast.
+    
+    @client-action
+    */
     Procedure HideLastToast
         Send ClientAction "hideLastToast"
     End_Procedure
     
+    /*
+    Hides all currently visible toasts.
+    
+    @client-action
+    */
     Procedure HideAllToast
         Send ClientAction "hideAllToast"
     End_Procedure
     
+    /*
+    Hides the toast with the specified ID.
+    
+    @param  sId  The ID of the toast to hide.
+    @client-action
+    */
     Procedure HideToastById String sId
         String[] aArgs
         
@@ -114,15 +169,36 @@ Class cWebToast is a cWebObject
         Send ClientAction "hideToastById" aArgs
     End_Procedure
     
+    /*
+    Shows a toast notification using a fully configured tWebToast struct,
+    allowing full control over all toast settings for a single toast.
+    
+    @param  toastConfig  The toast configuration struct.
+    @client-action
+    */
     Procedure ShowCustomToast tWebToast toastConfig
         String[] aArgs
         
         Send ClientAction "showCustomToast" aArgs toastConfig
     End_Procedure
     
+    /*
+    Called when a toast is hidden. Override to handle the event server-side.
+    Requires pbServerOnToastHide to be set to True.
+    
+    @param  sId  The ID of the toast that was hidden.
+    @published
+    */
     Procedure OnToastHide String sId
     End_Procedure
     
+    /*
+    Called when a toast is clicked. Override to handle the event server-side.
+    Requires pbServerOnToastClick to be set to True.
+    
+    @param  sId  The ID of the toast that was clicked.
+    @published
+    */
     Procedure OnToastClick String sId
     End_Procedure
     

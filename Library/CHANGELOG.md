@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 ## [Unreleased]
+- Added ShowToast procedure (#1).
+- Commented functions and implemented DefaultToastConfig.
 
 ## [0.1.5] - 2026-04-15
 
