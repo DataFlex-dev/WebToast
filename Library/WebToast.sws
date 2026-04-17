@@ -1,6 +1,6 @@
 {
     "dependencies": [
-        "DataFlex-dev/Web UI#>=1.0.0"
+        "DataFlex-dev/Web UI#1.0.42"
     ],
     "description": "Web control for toast style notifications.",
     "df": 26.0,
@@ -16,7 +16,7 @@
             "CHANGELOG.md"
         ],
         "license": "BSD-3-Clause",
-        "version": "0.1.6"
+        "version": "0.1.7"
     },
     "workspaceName": "Toast"
 }

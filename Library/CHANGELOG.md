@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.7] - 2026-04-17
+- Switched to using ^1.0.0 semver format for Web UI dependency to be safer with braking changes.
+
 ## [0.1.6] - 2026-04-15
 - Added ShowToast procedure (#7).
 - Commented functions and implemented DefaultToastConfig.
